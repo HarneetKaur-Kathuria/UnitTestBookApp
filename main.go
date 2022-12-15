@@ -15,72 +15,41 @@ type Book struct {
 	YearPublished int    `json:"published year"`
 }
 
-var books []Book
+var books = []Book{
+	{
+		ID:            1,
+		Title:         "Introduction to Linux",
+		Author:        "Douglas Adams",
+		YearPublished: 1979,
+	},
+	{
+		ID:            2,
+		Title:         "The Hobbit",
+		Author:        "J.R.R Tolkein",
+		YearPublished: 1937,
+	},
+	{
+		ID:            3,
+		Title:         "A Tale of Two Cities",
+		Author:        "Charles",
+		YearPublished: 2009,
+	},
+	{
+		ID:            4,
+		Title:         "Harry Potter and the Philosophers Stone",
+		Author:        "J.K. Rowling",
+		YearPublished: 1997,
+	},
+	{
+		ID:            5,
+		Title:         "Les Miserables",
+		Author:        "Victor Hugo",
+		YearPublished: 1862,
+	},
+}
 
 func main() {
 
-	books = []Book{
-		{
-			ID:            1,
-			Title:         "Introduction to Linux",
-			Author:        "Douglas Adams",
-			YearPublished: 1979,
-		},
-		{
-			ID:            2,
-			Title:         "The Hobbit",
-			Author:        "J.R.R Tolkein",
-			YearPublished: 1937,
-		},
-		{
-			ID:            3,
-			Title:         "A Tale of Two Cities",
-			Author:        "Charles",
-			YearPublished: 2009,
-		},
-		{
-			ID:            4,
-			Title:         "Harry Potter and the Philosophers Stone",
-			Author:        "J.K. Rowling",
-			YearPublished: 1997,
-		},
-		{
-			ID:            5,
-			Title:         "Les Miserables",
-			Author:        "Victor Hugo",
-			YearPublished: 1862,
-		},
-		{
-			ID:            6,
-			Title:         "I, Robot",
-			Author:        "Isaac Asamov",
-			YearPublished: 1950,
-		},
-		{
-			ID:            7,
-			Title:         "The Gods Themselves",
-			Author:        "Isaac Asamov",
-			YearPublished: 1973,
-		},
-		{
-			ID:            8,
-			Title:         "The Moond is a Hash Mistress",
-			Author:        "Robert A. Heinlein",
-			YearPublished: 1966,
-		},
-		{
-			ID:            9,
-			Title:         "On Basilisk Station",
-			Author:        "David Weber",
-			YearPublished: 1993,
-		},
-		{
-			ID:            10,
-			Title:         "The Android's Dream",
-			Author:        "John Scalzi",
-			YearPublished: 2006,
-		},
-	}
 	HandlerRouting()
 }
 
@@ -143,3 +112,26 @@ func DeleteBookById(w http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(w).Encode("ID Not Found")
 
 }
+
+// func HandlerRouting() {
+
+// 	fmt.Println("Welcome to the DataBase Connectivity")
+// 	r := mux.NewRouter()
+
+// 	//endpoints
+// 	r.HandleFunc("/", serveHome).Methods("GET")
+// 	// r.HandleFunc("/book", CreateBook).Methods("POST")
+// 	r.HandleFunc("/books", GetAllBooks).Methods("GET")
+// 	// r.HandleFunc("/book/{id}", GetBookById).Methods("GET")
+// 	r.HandleFunc("/books", DeleteAllBooks).Methods("DELETE")
+
+// 	r.HandleFunc("/book/{id}", DeleteBookById).Methods("DELETE")
+// 	// r.HandleFunc("/book/{id}", UpdateBookById).Methods("PUT")
+
+// 	log.Fatal(http.ListenAndServe(":8080", r))
+
+// }
+
+// func serveHome(w http.ResponseWriter, r *http.Request) {
+// 	w.Write([]byte("<h1>Welcome to DataBase Connectivity Session</h1>"))
+// }
