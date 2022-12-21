@@ -1,4 +1,4 @@
-package main
+package routers
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"cognologix.com/service"
 )
 
 func HandlerRouting() {
@@ -16,11 +17,11 @@ func HandlerRouting() {
 	//endpoints
 	r.HandleFunc("/", serveHome).Methods("GET")
 	// r.HandleFunc("/book", CreateBook).Methods("POST")
-	r.HandleFunc("/books", GetAllBooks).Methods("GET")
-	// r.HandleFunc("/book/{id}", GetBookById).Methods("GET")
-	r.HandleFunc("/books", DeleteAllBooks).Methods("DELETE")
+	r.HandleFunc("/books", service.GetAllBooks).Methods("GET")
+	r.HandleFunc("/book/{id}", service.GetBookById).Methods("GET")
+	r.HandleFunc("/books", service.DeleteAllBooks).Methods("DELETE")
 
-	r.HandleFunc("/book/{id}", DeleteBookById).Methods("DELETE")
+	r.HandleFunc("/book/{id}", service.DeleteBookById).Methods("DELETE")
 	// r.HandleFunc("/book/{id}", UpdateBookById).Methods("PUT")
 
 	log.Fatal(http.ListenAndServe(":8080", r))
